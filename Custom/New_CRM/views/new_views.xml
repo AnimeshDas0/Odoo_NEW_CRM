@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+
+        <record id="view_new_kanban" model="ir.ui.view">
+            <field name="name">new.kanban</field>
+            <field name="model">new</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage">
+                    <field name="stage"/>
+                    <field name="priority"/>
+                    <field name="opportunity"/>
+                    <field name="expected_revenue"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="oe_kanban_content">
+                                    <h3><field name="opportunity"/></h3>
+                                    <div><field name="expected_revenue"/></div>
+                                    <div><field name="priority" widget="rating" options="{'max_value': 4}"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_new_tree" model="ir.ui.view">
+            <field name="name">new.tree</field>
+            <field name="model">new</field>
+            <field name="arch" type="xml">
+                <tree string="New Records">
+                    <field name="organization_or_contact"/>
+                    <field name="opportunity"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="expected_revenue"/>
+                    <field name="priority"/>
+                    <field name="stage" widget="statusbar" statusbar_visible="new,qualified,proposition,won"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_new_form" model="ir.ui.view">
+            <field name="name">new.form</field>
+            <field name="model">new</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="organization_or_contact"/>
+                            <field name="opportunity"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="expected_revenue"/>
+                            <field name="priority" widget="rating" options="{'max_value': 4}"/>
+                            <field name="stage"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_new_search" model="ir.ui.view">
+            <field name="name">new.search</field>
+            <field name="model">new</field>
+            <field name="arch" type="xml">
+                <search string="Search New Records">
+                    <field name="organization_or_contact" string="Organization or Contact"/>
+                    <field name="opportunity" string="Opportunity"/>
+                    <field name="email" string="Email"/>
+                    <field name="phone" string="Phone"/>
+                    <field name="expected_revenue" string="Expected Revenue"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="stage" string="Stage"/>
+
+                    <filter name="filter_by_stage_new" string="New" domain="[('stage', '=', 'new')]"/>
+                    <filter name="filter_by_stage_qualified" string="Qualified" domain="[('stage', '=', 'qualified')]"/>
+                    <filter name="filter_by_stage_proposition" string="Proposition" domain="[('stage', '=', 'proposition')]"/>
+                    <filter name="filter_by_stage_won" string="Won" domain="[('stage', '=', 'won')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_new" model="ir.actions.act_window">
+            <field name="name">Pipeline</field>
+            <field name="res_model">new</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p>Create and manage opportunities effectively using this Kanban view.</p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

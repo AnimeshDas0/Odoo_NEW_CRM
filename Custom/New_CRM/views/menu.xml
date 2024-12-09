@@ -1,0 +1,6 @@
+<odoo>
+
+    <menuitem id="menu_new_root" name="New Crm" sequence="10"/>
+    <menuitem id="menu_new" name="Sales" parent="menu_new_root" action="action_new" sequence="10"/>
+
+</odoo>
